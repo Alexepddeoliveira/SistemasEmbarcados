@@ -39,3 +39,46 @@ O sistema será desenvolvido em três etapas simultâneas:
 **Recursos:** 
 O projeto utilizará apenas o tempo dos estudantes envolvidos e os materiais disponibilizados pela faculdade.
 
+# Requisitos do Projeto - Garra Controlada por Movimentos
+
+## **Requisitos Funcionais**
+
+1. **Controle da Garra:**
+   - A garra deve abrir, fechar e se mover conforme os comandos recebidos via MQTT.
+
+2. **Detecção de Movimentos:**
+   - O sistema Python deve detectar os movimentos da mão em tempo real e enviar comandos para o Arduino.
+
+3. **Comunicação via MQTT:**
+   - O Arduino deve receber e executar os comandos enviados pelo sistema Python através de MQTT.
+
+4. **Controle de Motores:**
+   - O Arduino deve controlar os motores da garra de acordo com os comandos recebidos.
+
+5. **Feedback Visual:**
+   - O sistema deve fornecer um feedback visual simples sobre a detecção de movimentos e o status da garra.
+
+## **Requisitos Não Funcionais**
+
+1. **Desempenho:**
+   - O sistema deve operar em tempo real com latência mínima.
+
+2. **Confiabilidade:**
+   - O sistema deve ser estável e funcionar de maneira consistente.
+
+3. **Escalabilidade:**
+   - Deve ser fácil adicionar mais componentes (motores/sensores) no futuro.
+
+4. **Segurança:**
+   - O sistema deve garantir que a garra opere de forma segura, evitando movimentos perigosos.
+
+5. **Facilidade de Uso:**
+   - A interface deve ser intuitiva e fácil de usar.
+
+6. **Portabilidade:**
+   - O sistema deve funcionar em diferentes plataformas (Windows, macOS, Linux).
+
+7. **Documentação:**
+   - O projeto deve incluir documentação básica para configuração e operação.
+
+
