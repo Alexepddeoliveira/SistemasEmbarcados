@@ -1,0 +1,29 @@
+# Manual de Montagem da Garra Mecânica - Conexões de Fios
+
+## Materiais Necessários
+- Arduino (Uno, Nano, etc.)
+- 5 Motores DC
+- Placa de circuito ou protoboard
+- Fios e conectores
+- Fonte de alimentação
+
+## Conexões
+
+1. **Motores e Arduino**:
+   - **Motor do Cotovelo**: Conecte ao pino digital 4 do Arduino.
+   - **Motor do Ombro**: Conecte ao pino digital 5 do Arduino.
+   - **Motor de Rotação**: Conecte ao pino digital 6 do Arduino.
+   - **Motor do Pulso**: Conecte ao pino digital 7 do Arduino.
+   - **Motor da Mão**: Conecte ao pino digital 8 do Arduino.
+
+2. **Pinos de Controle**:
+   - **Pino de Controle/Sinal**: Conecte ao pino digital 9 do Arduino.
+   - **LED**: Conecte ao pino digital 10 do Arduino.
+
+3. **Alimentação**:
+   - Conecte a fonte de alimentação aos motores. Certifique-se de que a fonte fornece corrente suficiente para todos os motores.
+
+## Dicas
+- Verifique todas as conexões antes de ligar a fonte de alimentação.
+- Use fios e conectores adequados para garantir boas conexões elétricas.
+
