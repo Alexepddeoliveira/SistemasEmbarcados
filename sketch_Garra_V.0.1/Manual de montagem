@@ -1,0 +1,76 @@
+----------------------------------------
+    Configurações e Montagem Básica
+        Controle de Garra com Arduino
+----------------------------------------
+
+1. Introdução:
+Este manual descreve as configurações e o processo de montagem necessários para fazer o controle de uma garra mecânica usando o Arduino com o módulo WiFi ESP8266, com comunicação via protocolo MQTT.
+
+2. Componentes Necessários:
+- 1 x Arduino (UNO, Mega ou similar).
+- 1 x Módulo WiFi ESP8266.
+- 1 x Protoboard e fios jumper.
+- 5 x Motores (ou atuadores) para movimentação da garra.
+- 1 x Fonte de alimentação adequada para os motores.
+- 1 x LED (opcional, para indicações).
+- Resistores (para o LED, conforme necessário).
+- Fios de conexão.
+
+3. Conexões Elétricas:
+- **Conexão do ESP8266 com o Arduino:**
+  - ESP8266 RX -> Arduino pino 2 (SoftwareSerial RX).
+  - ESP8266 TX -> Arduino pino 3 (SoftwareSerial TX).
+  - ESP8266 VCC -> 3.3V do Arduino.
+  - ESP8266 GND -> GND do Arduino.
+  - ESP8266 CH_PD -> 3.3V do Arduino.
+
+- **Conexão dos Motores da Garra:**
+  - Motor Cotovelo -> Pino 4.
+  - Motor Ombro -> Pino 5.
+  - Motor Rotação -> Pino 6.
+  - Motor Pulso -> Pino 7.
+  - Motor Mão -> Pino 8.
+
+- **Outras Conexões:**
+  - LED -> Pino 10 (opcional, para indicações).
+  - Sinal de controle -> Pino 9 (usado para indicar estado de controle).
+
+4. Configuração do Software:
+- Certifique-se de ter as seguintes bibliotecas instaladas na IDE do Arduino:
+  - `SoftwareSerial`: Para comunicação serial com o ESP8266.
+  - `WiFiEsp`: Para controlar o WiFi no ESP8266.
+  - `PubSubClient`: Para comunicação via protocolo MQTT.
+
+5. Configurações do WiFi e MQTT:
+- **Configurações de rede:**
+  - Defina o nome da sua rede WiFi (SSID) e a senha no código:
+    ```cpp
+    const char* ssid = "nome_da_rede";
+    const char* password = "senha_da_rede";
+    ```
+
+- **Configurações do MQTT:**
+  - Configure o endereço do servidor MQTT (IP do broker no PC):
+    ```cpp
+    const char* mqtt_server = "192.168.0.100";
+    ```
+
+6. Procedimento de Montagem:
+- Monte o ESP8266 no Arduino conforme as conexões descritas.
+- Conecte os motores aos pinos correspondentes no Arduino.
+- Monte os motores na estrutura da garra, assegurando-se de que a garra esteja devidamente fixada para evitar danos.
+- Certifique-se de que todos os fios de alimentação estejam corretamente conectados à fonte de energia apropriada para os motores.
+- Se desejar, conecte um LED ao pino 10 para usar como indicação de atividade.
+
+7. Teste de Funcionamento:
+- Suba o código no Arduino utilizando a IDE do Arduino.
+- Abra o Serial Monitor para verificar a conexão do Arduino ao WiFi.
+- Verifique se o ESP8266 está se conectando à rede WiFi e ao servidor MQTT.
+- Use a aplicação externa para enviar comandos MQTT e controlar os movimentos da garra. Veja as mensagens retornadas no Serial Monitor.
+
+8. Solução de Problemas:
+- **ESP8266 não responde:** Verifique as conexões e certifique-se de que o ESP8266 está recebendo 3.3V.
+- **Motores não se movem:** Verifique as conexões dos motores e a fonte de alimentação. Certifique-se de que o tempo de ativação nos comandos está adequado.
+- **Problemas de conexão WiFi:** Certifique-se de que o SSID e a senha estão corretos, e que o ESP8266 está dentro do alcance do roteador.
+
+----------------------------------------
