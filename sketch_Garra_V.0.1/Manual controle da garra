@@ -1,0 +1,71 @@
+
+----------------------------------------
+       Controle de Garra com Arduino
+         via MQTT 
+----------------------------------------
+
+1. Introdução:
+Este código permite controlar uma garra mecânica utilizando um Arduino e um módulo WiFi ESP8266.
+A comunicação com a garra é feita via protocolo MQTT, permitindo que comandos de movimento sejam enviados de uma aplicação 
+externa para o Arduino, que por sua vez controla os motores da garra.
+
+2. Conexões:
+- SoftwareSerial (ESP8266): RX (pino 2), TX (pino 3)
+- Motores:
+  - Cotovelo: Pino 4
+  - Ombro: Pino 5
+  - Rotação: Pino 6
+  - Pulso: Pino 7
+  - Mão: Pino 8
+- Sinal e LED: Pinos 9 e 10 (respectivamente)
+
+3. Bibliotecas Utilizadas:
+- SoftwareSerial: Comunicação serial com o módulo ESP8266.
+- WiFiEsp: Estabelece a conexão WiFi com o ESP8266.
+- PubSubClient: Implementa o protocolo MQTT para troca de mensagens.
+
+4. Variáveis de Rede:
+- ssid: Nome da rede WiFi.
+- password: Senha da rede WiFi.
+- mqtt_server: IP do servidor MQTT.
+
+5. Funções de Controle da Garra:
+- moverCotovelo(bool paraCima): Move o cotovelo da garra para cima ou para baixo.
+- moverOmbro(bool paraFrente): Move o ombro para frente ou para trás.
+- rotacionarGarra(bool sentidoHorario): Rotaciona a garra no sentido horário ou anti-horário.
+- moverPulso(bool paraCima): Move o pulso para cima ou para baixo.
+- abrirFecharMao(bool abrir): Abre ou fecha a mão da garra.
+
+Cada movimento é temporizado para evitar danos aos motores, utilizando delay() para limitar o tempo de ativação.
+
+6. Comunicação MQTT:
+- callback(): Função chamada quando o Arduino recebe uma mensagem MQTT. Ela processa o comando recebido e chama a função de movimento correspondente.
+- reconnect(): Função que garante que o Arduino esteja sempre conectado ao broker MQTT, tentando reconectar em caso de falhas.
+
+7. Loop Principal:
+No loop(), o código verifica continuamente se o Arduino está conectado ao broker MQTT e processa novas mensagens utilizando client.loop().
+
+8. Comandos MQTT:
+Os seguintes comandos podem ser enviados via MQTT para controlar a garra:
+- "cotovelo_cima": Levanta o cotovelo.
+- "cotovelo_baixo": Abaixa o cotovelo.
+- "ombro_frente": Move o ombro para frente.
+- "ombro_tras": Move o ombro para trás.
+- "rotacao_horario": Rotaciona a garra no sentido horário.
+- "rotacao_antihorario": Rotaciona a garra no sentido anti-horário.
+- "pulso_cima": Levanta o pulso.
+- "pulso_baixo": Abaixa o pulso.
+- "mao_abrir": Abre a mão da garra.
+- "mao_fechar": Fecha a mão da garra.
+
+9. Requisitos de Hardware:
+- Arduino com suporte ao ESP8266.
+- Módulo WiFi ESP8266.
+- Módulos de controle dos motores da garra.
+
+10. Observações:
+- Limitação de movimento: A movimentação dos motores é temporizada para evitar danos à garra mecânica. Se necessário, 
+ajuste os valores de tempo nas variáveis de limite (tempoCotovelo, tempoOmbro, etc.).
+- Conectividade: Certifique-se de que o Arduino esteja conectado à mesma rede que o servidor MQTT.
+
+----------------------------------------
