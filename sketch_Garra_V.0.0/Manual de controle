@@ -1,0 +1,51 @@
+# Manual de Controle da Garra Mecânica
+
+## Introdução
+Este manual descreve os comandos que você pode enviar ao Arduino para controlar uma garra mecânica. O controle é feito através da comunicação serial usando o Monitor Serial da IDE do Arduino ou um terminal serial.
+
+## Comandos de Controle
+
+### 1. Mover Cotovelo
+- **Comando**: `cotovelo_cima`
+- **Descrição**: Move o cotovelo da garra para cima.
+- **Ação**: O motor do cotovelo será ativado para mover a parte do cotovelo para cima por um tempo definido.
+
+- **Comando**: `cotovelo_baixo`
+- **Descrição**: Move o cotovelo da garra para baixo.
+- **Ação**: O motor do cotovelo será ativado para mover a parte do cotovelo para baixo por um tempo definido.
+
+### 2. Mover Ombro
+- **Comando**: `ombro_frente`
+- **Descrição**: Move o ombro da garra para frente.
+- **Ação**: O motor do ombro será ativado para mover o ombro da garra para frente por um tempo definido.
+
+- **Comando**: `ombro_tras`
+- **Descrição**: Move o ombro da garra para trás.
+- **Ação**: O motor do ombro será ativado para mover o ombro da garra para trás por um tempo definido.
+
+### 3. Rotacionar Garra
+- **Comando**: `rotacao_horario`
+- **Descrição**: Rotaciona a garra no sentido horário.
+- **Ação**: O motor de rotação será ativado para girar a garra no sentido horário por um tempo definido.
+
+- **Comando**: `rotacao_antihorario`
+- **Descrição**: Rotaciona a garra no sentido anti-horário.
+- **Ação**: O motor de rotação será ativado para girar a garra no sentido anti-horário por um tempo definido.
+
+### 4. Mover Pulso
+- **Comando**: `pulso_cima`
+- **Descrição**: Move o pulso da garra para cima.
+- **Ação**: O motor do pulso será ativado para mover o pulso da garra para cima por um tempo definido.
+
+- **Comando**: `pulso_baixo`
+- **Descrição**: Move o pulso da garra para baixo.
+- **Ação**: O motor do pulso será ativado para mover o pulso da garra para baixo por um tempo definido.
+
+### 5. Abrir/Fechar Mão
+- **Comando**: `mao_abrir`
+- **Descrição**: Abre a mão da garra.
+- **Ação**: O motor da mão será ativado para abrir a mão da garra por um tempo definido.
+
+- **Comando**: `mao_fechar`
+- **Descrição**: Fecha a mão da garra.
+- **Ação**: O motor da mão será ativado para fechar a mão da garra por um tempo definido.
