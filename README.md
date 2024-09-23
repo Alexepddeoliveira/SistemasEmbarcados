@@ -16,7 +16,7 @@ Trazer uma nova tecnologia de segurança para operações que exigem precisão e
 - Alex
 - Victor
 - Luiza
--Erik
+- Erik
 
 **Usuários Finais:** 
 Médicos, cientistas, policiais e militares que necessitam de precisão e segurança em operações arriscadas.
