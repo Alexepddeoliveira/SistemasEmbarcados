@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 
 # Configuração MQTT
-MQTT_BROKER = "192.168.144.239"  # Substitua pelo IP do broker Mosquitto
+MQTT_BROKER = "192.168.21.239"  # Substitua pelo IP do broker Mosquitto
 MQTT_PORT = 1883
 MQTT_TOPIC = "garra/controle"  # Tópico onde os dados da garra serão enviados
 
