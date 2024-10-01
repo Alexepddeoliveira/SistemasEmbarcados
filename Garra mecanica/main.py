@@ -12,6 +12,9 @@ last_time = 0
 coordenadaBase = [0, 0, 0]
 posicao_garra = [0, 0, 0, True]
 
+# Variável de controle para saber se a mão esquerda está detectada
+mao_esquerda_detectada = False
+
 # Captura de vídeo (você pode alterar para webcam)
 cap = cv2.VideoCapture(0)
 
@@ -41,26 +44,40 @@ while True:
 
         # Verifique se o resultado da detecção de mãos não é None
         if result.multi_handedness:
-            # Obter as coordenadas da mão direita e verificar se está aberta
-            idx_mao_direita = next((i for i, handedness in enumerate(result.multi_handedness) if handedness.classification[0].label == 'Right'), None)
+            # Obter índice da mão esquerda, se houver
+            idx_mao_esquerda = next((i for i, handedness in enumerate(result.multi_handedness) if handedness.classification[0].label == 'Left'), None)
 
-            if idx_mao_direita is not None:
-                hand_lms = result.multi_hand_landmarks[idx_mao_direita]
-                current_coordinates = getHandCoordinates(hand_lms, img_width, img_height)
-                mao_aberta = verificar_mao_aberta(hand_lms)
+            # Se a mão esquerda for detectada, sinaliza para interromper o envio
+            if idx_mao_esquerda is not None:
+                mao_esquerda_detectada = True
+                print("Mão esquerda detectada. Interrompendo o envio de dados da mão direita.")
+            else:
+                mao_esquerda_detectada = False
 
-                # Atualizar posição da garra
-                relative_coordinates = [
-                    current_coordinates[0] - coordenadaBase[0],
-                    current_coordinates[1] - coordenadaBase[1],
-                    current_coordinates[2] - coordenadaBase[2],
-                    mao_aberta
-                ]
-                posicao_garra = atualizar_posicao_garra(relative_coordinates, posicao_garra)
-                print(f'Posição alvo da garra: X={posicao_garra[0]:.2f}, Y={posicao_garra[1]:.2f}, Z={posicao_garra[2]:.2f}, Mão aberta: {posicao_garra[3]}')
+            # Só envia dados da mão direita se a mão esquerda não estiver detectada
+            if not mao_esquerda_detectada:
+                # Obter as coordenadas da mão direita e verificar se está aberta
+                idx_mao_direita = next((i for i, handedness in enumerate(result.multi_handedness) if handedness.classification[0].label == 'Right'), None)
 
-                # Chamada contínua da função para enviar dados via MQTT
-                enviar_dados_mqtt(posicao_garra)
+                if idx_mao_direita is not None:
+                    hand_lms = result.multi_hand_landmarks[idx_mao_direita]
+                    current_coordinates = getHandCoordinates(hand_lms, img_width, img_height)
+                    mao_aberta = verificar_mao_aberta(hand_lms)
+
+                    # Atualizar posição da garra
+                    relative_coordinates = [
+                        current_coordinates[0] - coordenadaBase[0],
+                        current_coordinates[1] - coordenadaBase[1],
+                        current_coordinates[2] - coordenadaBase[2],
+                        mao_aberta
+                    ]
+                    posicao_garra = atualizar_posicao_garra(relative_coordinates, posicao_garra)
+                    print(f'Posição alvo da garra: X={posicao_garra[0]:.2f}, Y={posicao_garra[1]:.2f}, Z={posicao_garra[2]:.2f}, Mão aberta: {posicao_garra[3]}')
+
+                    # Chamada contínua da função para enviar dados via MQTT
+                    enviar_dados_mqtt(posicao_garra)
+            else:
+                print("Nenhuma mão detectada ou mão esquerda presente.")
         else:
             print("Nenhuma mão detectada.")
 
