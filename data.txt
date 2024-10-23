@@ -1,0 +1,5 @@
+
+User & Vhost	ssukwgcy
+Password	VaAaWFMHdoQP2jfyPVNHw663D74OTzZP
+5672 (5671 for TLS)
+URL	amqps://ssukwgcy:***@jackal.rmq.cloudamqp.com/ssukwgcy
